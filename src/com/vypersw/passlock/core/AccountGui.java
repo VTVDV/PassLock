@@ -45,7 +45,7 @@ public class AccountGui extends JFrame {
 	 * Create the frame.
 	 * @param mainGUI 
 	 */
-	public AccountGui(MainGUI mainGUI, Account account) {		
+	public AccountGui(final MainGUI mainGUI, final Account account) {		
 		sqlite = new SQLUtility();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 600, 300);
@@ -96,7 +96,7 @@ public class AccountGui extends JFrame {
 		passwordField.setText(account.getPassword());
 		panel.add(passwordField, "flowx,cell 1 3,growx");		
 		
-		JButton btnGenerate = new JButton("Generate");
+		final JButton btnGenerate = new JButton("Generate");
 		btnGenerate.setEnabled(false);
 		panel.add(btnGenerate, "cell 1 3");
 		btnGenerate.addActionListener(new ActionListener() 
@@ -122,7 +122,7 @@ public class AccountGui extends JFrame {
 		JLabel notesLabel = new JLabel("Notes:");
 		panel_1.add(notesLabel, "cell 0 0,alignx left,aligny top");
 		
-		JTextPane notesPane = new JTextPane();
+		final JTextPane notesPane = new JTextPane();
 		notesPane.setEditable(false);
 		panel_1.add(notesPane, "cell 1 0,grow");
 		notesPane.setText(account.getNotes());
@@ -131,11 +131,11 @@ public class AccountGui extends JFrame {
 		panel_2.setBorder(new TitledBorder(null, "Options", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 		
-		JButton changeButton = new JButton("Change Details");
+		final JButton changeButton = new JButton("Change Details");
 		changeButton.setToolTipText("Click to enable changing fields.");
 		panel_2.add(changeButton);
 		
-		JButton copyButton = new JButton("Copy password to Clipboard");
+		final JButton copyButton = new JButton("Copy password to Clipboard");
 		copyButton.setToolTipText("Copies password to clipboard.");
 		copyButton.setEnabled(true);
 		panel_2.add(copyButton);
@@ -168,7 +168,7 @@ public class AccountGui extends JFrame {
 		
 		panel_2.add(deleteButton);
 				
-		JButton saveButton = new JButton("Save Details");
+		final JButton saveButton = new JButton("Save Details");
 		saveButton.setToolTipText("Details must be changeable before being able to be saved.");
 		saveButton.setEnabled(false);
 		panel_2.add(saveButton);

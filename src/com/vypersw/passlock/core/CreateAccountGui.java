@@ -44,7 +44,7 @@ public class CreateAccountGui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CreateAccountGui(MainGUI mainGUI) 
+	public CreateAccountGui(final MainGUI mainGUI) 
 	{
 		shingleton = GroupManager.getInstance();
 		sqlite = new SQLUtility();
