@@ -19,9 +19,12 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.net.URL;
+
 import javax.swing.JLabel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 
 import java.awt.Component;
 import javax.swing.JComboBox;
@@ -69,6 +72,10 @@ public class MainGUI extends JFrame
 	 */
 	public MainGUI() 
 	{
+		setTitle("PassLock");
+		URL iconURL = getClass().getClassLoader().getResource("res/passlock_icon.png");
+		ImageIcon img = new ImageIcon(iconURL);
+		setIconImage(img.getImage());
 		sqlite = new SQLUtility();
 		
 		File file = new File("passlock.db");

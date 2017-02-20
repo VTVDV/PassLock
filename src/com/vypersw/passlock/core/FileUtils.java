@@ -26,12 +26,11 @@ public class FileUtils
 		File file = new File("Application.properties");
 		if (!file.exists())
 		{
-			try(InputStream resourceStream = getClass().getClassLoader().getResourceAsStream("Application.properties"))
+			try(InputStream resourceStream = getClass().getClassLoader().getResourceAsStream("res/Application.properties"))
 			{
 				props = new Properties();
 				props.load(resourceStream);
 				sqlite.setEncryptionKey(props.getProperty("ENCRYPTION_KEY"));
-				System.out.println(props.getProperty("ENCRYPTION_KEY"));
 				savePropertiesFile();
 			}
 			catch (Exception e)
