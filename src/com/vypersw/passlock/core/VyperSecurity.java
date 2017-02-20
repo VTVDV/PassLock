@@ -12,6 +12,7 @@ import javax.crypto.spec.PBEParameterSpec;
 public class VyperSecurity 
 {
 	private static VyperSecurity instance = null;
+	private String encryptionKey = "";
 	
 	private VyperSecurity()
 	{
@@ -29,7 +30,7 @@ public class VyperSecurity
 	
 	public String encrypt(String pass)
 	{
-		String keyString = "ITcr7253";
+		String keyString = encryptionKey;
 		try 
 		{
 			SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
@@ -59,7 +60,7 @@ public class VyperSecurity
 	
 	public String decrypt(String pass)
 	{
-		String keyString = "ITcr7253";
+		String keyString = encryptionKey;
 		try
 		{
 			SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
@@ -90,5 +91,15 @@ public class VyperSecurity
 	{
 		SecureRandom random = new SecureRandom();
 		return new BigInteger(130,random).toString(32);
+	}
+	
+	public String getEncryptionKey() 
+	{
+		return encryptionKey;
+	}
+
+	public void setEncryptionKey(String encryptionKey) 
+	{
+		this.encryptionKey = encryptionKey;
 	}
 }

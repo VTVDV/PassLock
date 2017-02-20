@@ -1,7 +1,6 @@
 package com.vypersw.passlock.core;
 
 import java.awt.BorderLayout;
-import java.util.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,16 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -26,28 +19,21 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-
 import javax.swing.JLabel;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 
 import java.awt.Component;
 import javax.swing.JComboBox;
-import javax.swing.border.EtchedBorder;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import javax.swing.UIManager;
 import java.awt.Color;
-import javax.swing.JRadioButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.JCheckBox;
-import javax.swing.SwingConstants;
 
 public class MainGUI extends JFrame 
 {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private GroupManager shingleton;
 	private MainGUI gui = this;
@@ -91,6 +77,7 @@ public class MainGUI extends JFrame
 			sqlite.createGroupsTable();
 			sqlite.createAccountsTable();
 		}
+		FileUtils.getInstance().loadProperties(sqlite);
 		
 		shingleton = GroupManager.getInstance();
 		shingleton.setGroups(sqlite.getGroups());

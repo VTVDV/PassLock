@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SQLUtility extends SQLconnection
-{
-	private VyperSecurity vsec;
-	
+{	
 	public void createAccountsTable()
 	{
 		Connection con = null;
@@ -315,5 +313,10 @@ public class SQLUtility extends SQLconnection
 			closeConnections(con, statement);
 		}
 		return 0;
+	}
+	
+	public void setEncryptionKey(String key)
+	{
+		VyperSecurity.getInstance().setEncryptionKey(key);
 	}
 }
