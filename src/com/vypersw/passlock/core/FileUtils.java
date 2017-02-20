@@ -26,29 +26,21 @@ public class FileUtils
 		File file = new File("Application.properties");
 		if (!file.exists())
 		{
-			URL url = getClass().getClassLoader().getResource("Application.properties");
-			try
+			try(InputStream resourceStream = getClass().getClassLoader().getResourceAsStream("Application.properties"))
 			{
-				file = new File(url.toURI());
+				props = new Properties();
+				props.load(resourceStream);
+				sqlite.setEncryptionKey(props.getProperty("ENCRYPTION_KEY"));
+				System.out.println(props.getProperty("ENCRYPTION_KEY"));
+				savePropertiesFile();
 			}
 			catch (Exception e)
 			{
-				e.printStackTrace();
+				sqlite.setEncryptionKey(VyperConstants.DEFAULT_ENCRYPTION_KEY);
+				System.out.println("Exception: " + e.getMessage() + " occured. Setting encryption key to default");
 			}
-		}
-		try(InputStream stream = new FileInputStream(file))
-		{
-			props = new Properties();
-			props.load(stream);
-			sqlite.setEncryptionKey(props.getProperty("ENCRYPTION_KEY"));
-			System.out.println(props.getProperty("ENCRYPTION_KEY"));
-			savePropertiesFile();
 		} 
-		catch (Exception e)
-		{
-			sqlite.setEncryptionKey(VyperConstants.DEFAULT_ENCRYPTION_KEY);
-			System.out.println("Exception: " + e.getMessage() + " occured. Setting encryption key to default");
-		}
+
 	}
 	
 	public void savePropertiesFile()
