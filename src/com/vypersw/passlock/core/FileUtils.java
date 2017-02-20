@@ -16,7 +16,7 @@ public class FileUtils
 	{
 		if (instance == null)
 		{
-			return new FileUtils();
+			instance = new FileUtils();
 		}
 		return instance;
 	}
